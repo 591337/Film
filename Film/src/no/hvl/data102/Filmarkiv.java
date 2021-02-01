@@ -1,8 +1,8 @@
 package no.hvl.data102;
 
-import no.hvl.data102.adt.FILMarkivADT;
+import no.hvl.data102.adt.FilmarkivADT;
 
-public class Filmarkiv implements FILMarkivADT {
+public class Filmarkiv implements FilmarkivADT {
 	
 	private Film[] filmTabell;
 	private int antall;

@@ -5,6 +5,32 @@ import no.hvl.data102.adt.*;
 
 public class Tekstgrensesnitt {
 	
+	public Tekstgrensesnitt() {
+	}
+	
+	// leser inn filnavn
+	public String filnavn() {
+		Scanner leser = new Scanner(System.in);
+		System.out.println("Filnavn: ");
+		leser.close();
+		
+		return leser.nextLine();
+	}
+	
+	// skal en bruke en eksisterende liste
+	public boolean eksisterende() {
+		Scanner leser = new Scanner(System.in);
+		System.out.println("Opprett nytt arkiv (1)\nBruk eksisterende (2)");
+		int alt = leser.nextInt();
+		leser.close();
+		
+		if (alt == 2) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 	// lese opplysningene om en FILM fra tastatur
 	public Film lesFilm() {
 		Scanner leser = new Scanner(System.in);
@@ -45,7 +71,7 @@ public class Tekstgrensesnitt {
 	
 	
 	// Skrive ut alle Filmer med en spesiell delstreng i tittelen
-	public void skrivUtFilmDelstrengITittel(FILMarkivADT filma, String delstreng) {
+	public void skrivUtFilmDelstrengITittel(FilmarkivADT filma, String delstreng) {
 		Film[] tabell = filma.soekTittel(delstreng);
 		for (Film f: tabell) {
 			visFilm(f);
@@ -53,7 +79,7 @@ public class Tekstgrensesnitt {
 	}
 	
 	// Skriver ut alle Filmer av en produsent / en gruppe
-	public void skrivUtFilmProdusent(FILMarkivADT filma, String delstreng) {
+	public void skrivUtFilmProdusent(FilmarkivADT filma, String delstreng) {
 		Film[] tabell = filma.soekProdusent(delstreng);
 		for (Film f: tabell) {
 			visFilm(f);
