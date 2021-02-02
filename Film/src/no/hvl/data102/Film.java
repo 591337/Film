@@ -10,7 +10,9 @@ public class Film {
 	private String filmselskap;
 	
 	//konstruktør tomt filmobjekt
-	public Film() {}
+	public Film() {
+		this(0, null, null, 0, null, null);
+	}
 	
 	//konstruktør
 	public Film(int filmnr, String produsent,

@@ -16,7 +16,7 @@ public class Fil {
 	
 	// Lese et Filmarkiv fra tekstfil
 	public static FilmarkivADT lesFraFil(String filnavn) {
-		FilmarkivADT filma = null;
+		FilmarkivADT filma;
 		
 		File fil = new File(filnavn);
 		Scanner leser;
@@ -24,7 +24,8 @@ public class Fil {
 		try {
 			leser = new Scanner(fil);
 		} catch (FileNotFoundException e) {
-			return null;
+			System.out.print("Fant ikke fil: "+filnavn);
+			return new Filmarkiv();
 		}
 		
 		int lengde = Integer.parseInt(leser.nextLine());

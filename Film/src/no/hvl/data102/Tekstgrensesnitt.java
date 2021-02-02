@@ -4,25 +4,26 @@ import java.util.Scanner;
 import no.hvl.data102.adt.*;
 
 public class Tekstgrensesnitt {
+	private Scanner leser;
 	
 	public Tekstgrensesnitt() {
+		leser = new Scanner(System.in);
 	}
 	
 	// leser inn filnavn
 	public String filnavn() {
-		Scanner leser = new Scanner(System.in);
-		System.out.println("Filnavn: ");
-		leser.close();
+		System.out.print("Filnavn: ");
+		String filnavn = leser.nextLine();
+		System.out.println();
 		
-		return leser.nextLine();
+		return filnavn;
 	}
 	
 	// skal en bruke en eksisterende liste
-	public boolean eksisterende() {
-		Scanner leser = new Scanner(System.in);
+	public boolean eksisterende() {;
 		System.out.println("Opprett nytt arkiv (1)\nBruk eksisterende (2)");
-		int alt = leser.nextInt();
-		leser.close();
+		System.out.print(": ");
+		int alt = Integer.parseInt(leser.nextLine());
 		
 		if (alt == 2) {
 			return true;
@@ -33,10 +34,9 @@ public class Tekstgrensesnitt {
 	
 	// lese opplysningene om en FILM fra tastatur
 	public Film lesFilm() {
-		Scanner leser = new Scanner(System.in);
-		
-		System.out.print("Filmnr: ");
-		int filmnr = Integer.parseInt(leser.nextLine());
+		System.out.println("Filmnr: ");
+		String in = leser.nextLine();
+		int filmnr = Integer.parseInt(in);
 		
 		System.out.print("Produsent: ");
 		String produsent = leser.nextLine();
@@ -52,8 +52,6 @@ public class Tekstgrensesnitt {
 		
 		System.out.print("Filmselskap: ");
 		String filmselsakp = leser.nextLine();
-		
-		leser.close();
 		
 		return new Film(filmnr, produsent, tittel,
 				lanseringsår, sjanger, filmselsakp);
@@ -88,11 +86,34 @@ public class Tekstgrensesnitt {
 	
 	// Skrive ut en enkel statistikk som inneholder antall Filmer totalt
 	// og hvor mange det er i hver sjanger
-	 public void skrivUtStatistikk(Filmarkiv filma) {
+	 public void skrivUtStatistikk(FilmarkivADT filma) {
 		 System.out.println("Totalt antall filmer: " + filma.antall());
 		 for (Sjanger sj: Sjanger.values()) {
 			 System.out.print(sj.toString() + ": " + filma.antall(sj));
 		 }
 	 }
-	//… Ev. andre metoder
+	 
+	 public String soekeord() {
+		 System.out.print("Søkeord: ");
+		 String soek = leser.nextLine();
+		 
+		 return soek;
+	 }
+	
+	 // velger mellom ulike alternativer
+	 public int alternativ() {
+		System.out.println("Legge til film (1)\n"
+				+ "Søk etter film tittel (2)\n"
+				+ "Søk etter film produsent (3)\n"
+				+ "Statistikk (4)\n"
+				+ "Avslutt (5)");
+		System.out.print(": ");
+		int alt = Integer.parseInt(leser.nextLine());
+		
+		return alt;
+	 }
+	 
+	 public void ikkeMulig(int alt) {
+		 System.out.println(alt + "er ikke et mulig alternativ");
+	 }
 }
